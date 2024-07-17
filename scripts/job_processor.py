@@ -7,11 +7,17 @@ def debug_log(message, debug):
         print(f"[DEBUG] {message}")
 
 # Function to load jobs from CSV
+
 def load_jobs_from_csv(filename, debug):
-    debug_log(f"Loading jobs from {filename}...", debug)
+    if debug:
+        print(f"[DEBUG] Loading jobs from {filename}...")
     df = pd.read_csv(filename)
+    if debug:
+        print(f"[DEBUG] DataFrame loaded:\n{df}")
     jobs = []
     for index, row in df.iterrows():
+        if debug:
+            print(f"[DEBUG] Processing row: {row.to_dict()}")
         if row['runner_description'] and row['duration']:
             job = {
                 'id': row['id'],
@@ -20,8 +26,11 @@ def load_jobs_from_csv(filename, debug):
                 'duration': row['duration']
             }
             jobs.append(job)
-    debug_log(f"Loaded {len(jobs)} jobs from {filename}.", debug)
+    if debug:
+        print(f"[DEBUG] Loaded {len(jobs)} jobs from {filename}.")
     return jobs
+
+
 
 # Function to filter jobs by runner and calculate average duration and appearances
 def filter_jobs(jobs, runner_name, debug):

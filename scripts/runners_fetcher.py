@@ -44,11 +44,11 @@ def fetch_jobs(gl, project_id, status_list=['success'], num_jobs=1000):
 def save_jobs_to_csv(jobs, filename):
     jobs_data = []
     for job in jobs:
-        if job.runner:
+        if job.runner:  # Adjusted to access the runner attribute
             job_data = {
                 'id': job.id,
                 'name': job.name,
-                'runner_description': job.runner['description'],
+                'runner_description': job.runner['description'] if job.runner else None,
                 'duration': job.duration,
                 'created_at': job.created_at,
                 'started_at': job.started_at,
