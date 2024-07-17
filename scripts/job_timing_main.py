@@ -1,8 +1,8 @@
 import time
 import pandas as pd
-from config_manager import load_config
-from job_processor import load_jobs_from_csv, filter_jobs
-from plot_generator import plot_job_durations, plot_comparison
+from .config_manager import load_config
+from .job_processor import load_jobs_from_csv, filter_jobs
+from .plot_generator import plot_job_durations, plot_comparison
 
 # Parse runners from config
 def parse_runners(runners_str):
@@ -12,7 +12,7 @@ def parse_runners(runners_str):
 def generate_job_timing_plots(csv_file, graph_runner_names, output_dir):
     config = load_config()
     debug = config.getboolean('settings', 'debug')
-    runner_names = parse_runners(config.get('settings', 'runners'))
+    runner_names = parse_runners(config.get('gitlab', 'runners'))
 
     if not graph_runner_names:
         graph_runner_names = runner_names

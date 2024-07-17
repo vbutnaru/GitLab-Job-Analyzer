@@ -1,6 +1,6 @@
 import gitlab
 import pandas as pd
-from config_manager import load_config, save_runners_to_config
+from .config_manager import load_config, save_runners_to_config
 
 # Get all runner names from GitLab
 def get_all_runner_names(gl, group_id=None, project_id=None):

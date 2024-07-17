@@ -1,9 +1,9 @@
 import argparse
-from runners_fetcher import fetch_runners, fetch_and_save_jobs
-from job_timing_main import generate_job_timing_plots
+from scripts.runners_fetcher import fetch_runners, fetch_and_save_jobs
+from scripts.job_timing_main import generate_job_timing_plots
 
 def main():
-    parser = argparse.ArgumentParser(description='GitLab Runner and Job Timing Script')
+    parser = argparse.ArgumentParser(description='GitLab Runner and Job Analyzer')
     subparsers = parser.add_subparsers(dest='command', help='Commands')
 
     # Subcommand to fetch runners
